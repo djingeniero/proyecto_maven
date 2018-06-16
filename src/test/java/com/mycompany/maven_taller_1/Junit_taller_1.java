@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.maven_taller_1;
 
 import org.junit.After;
@@ -37,9 +32,57 @@ public class Junit_taller_1 {
     public void tearDown() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    /**
+     * Test of SepararFrases method, of class Inicio.
+     */
+//    @Test
+//    public void testSepararFrases() {
+//        System.out.println("SepararFrases");
+//        Inicio instance = new Inicio();
+//        instance.SepararFrases();
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+//    }
+
+    /**
+     * Test of ActivoPasivo method, of class Inicio.
+     */
+//    @Test
+//    public void testActivoPasivo() {
+//        System.out.println("ActivoPasivo");
+//        String frase = "";
+//        int expResult = 0;
+//        int result = Inicio.ActivoPasivo(frase);
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+//    }
+
+    /**
+     * Test of SepararPalabras method, of class Inicio.
+     */
+    @Test
+    public void testSepararPalabras() {
+        System.out.println("SepararPalabras");
+        String frase = "Sam eat apple";
+        String entrada [] = maven_class_taller_1.SepararPalabras(frase);
+        String[] salida = {"Sam","eat","apple"};
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+        assertArrayEquals(salida, entrada );
+        
+    }
+
+    /**
+     * Test of main method, of class Inicio.
+     */
+    @Test
+    public void testMain() throws Exception {
+        System.out.println("main");
+        String[] args = null;
+        maven_class_taller_1.main(args);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+    
 }
