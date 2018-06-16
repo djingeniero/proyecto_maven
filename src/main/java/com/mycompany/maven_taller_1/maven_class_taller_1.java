@@ -35,34 +35,35 @@ import opennlp.tools.tokenize.TokenizerModel;
  */
 public class maven_class_taller_1 {
 
-    public void SepararFrases() {
-        SentenceDetector sentenceDetector = null;
-        InputStream modelIn = null;
-
-        try {
-            modelIn = getClass().getResourceAsStream("en-sent.bin");
-            final SentenceModel sentenceModel = new SentenceModel(modelIn);
-            modelIn.close();
-            sentenceDetector = new SentenceDetectorME(sentenceModel);
-        } catch (final IOException ioe) {
-            ioe.printStackTrace();
-        } finally {
-            if (modelIn != null) {
-                try {
-                    modelIn.close();
-                } catch (final IOException e) {
-                }
-            }
-        }
-        String sentences[] = (sentenceDetector.sentDetect("I am Juan. I am engineer. I like travelling and driving"));
-        for (int i = 0; i < sentences.length; i++) {
-            System.out.println(sentences[i]);
-        }
-    }
+//    public void SepararFrases() {
+//        SentenceDetector sentenceDetector = null;
+//        InputStream modelIn = null;
+//
+//        try {
+//            modelIn = getClass().getResourceAsStream("en-sent.bin");
+//            final SentenceModel sentenceModel = new SentenceModel(modelIn);
+//            modelIn.close();
+//            sentenceDetector = new SentenceDetectorME(sentenceModel);
+//        } catch (final IOException ioe) {
+//            ioe.printStackTrace();
+//        } finally {
+//            if (modelIn != null) {
+//                try {
+//                    modelIn.close();
+//                } catch (final IOException e) {
+//                }
+//            }
+//        }
+//        String sentences[] = (sentenceDetector.sentDetect("I am Juan. I am engineer. I like travelling and driving"));
+//        for (int i = 0; i < sentences.length; i++) {
+//            System.out.println(sentences[i]);
+//        }
+//    }
 
     public static int ActivoPasivo(String frase) {
-      InputStream tokenModelIn = null;
+                InputStream tokenModelIn = null;
 		InputStream posModelIn = null;
+                int x1 = 0;
 		
 		try {
 			String sentence = frase;
@@ -79,10 +80,32 @@ public class maven_class_taller_1 {
 			//System.out.println("Token\t:\tTag\t:\tProbability\n---------------------------------------------");
 			for(int i=0;i<tokens.length;i++){
 				//System.out.println(tokens[i]+"\t:\t"+tags[i]+"\t:\t"+probs[i]);
-                                if (tags[i].equals("POS") || tags[i].equals("PRP") || tags[i].equals("PRP$")){
-                                    return 1; 
+//                                if (tags[i].equals("POS") || tags[i].equals("PRP") || tags[i].equals("PRP$")){
+//                                    return 1; 
+//                                }
+//                        System.out.println(tokens[i]);       
+                        if (tags[i].equals("DT")){
+                                    x1++;
                                 }
-			}
+                                if (tags[i].equals("POS")){
+                                    x1++;        
+                                }
+                                if (tags[i].equals("PRP") || tags[i].equals("PRP$")){
+                                    x1++;
+                                }
+                                if (tags[i].equals("VB")){
+                                    x1++;                                     
+                                }
+                        }
+                            //System.out.println(x1);
+                            if (x1 >= 3) {                                   
+                                    x1 = 0;
+                                    return 0;
+                            }else{
+                                    x1 = 0;
+                                    return 1;
+                            }
+                
 			
 		}catch (IOException e) {
 			// Model loading failed, handle the error
@@ -103,6 +126,7 @@ public class maven_class_taller_1 {
         }
                 return 0;
     }
+
     
     public static String [] SepararPalabras(String frase) {
         SimpleTokenizer simpleTokenizer = SimpleTokenizer.INSTANCE;

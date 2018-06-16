@@ -155,10 +155,16 @@ public class Menu extends javax.swing.JFrame {
                     
                     
                     if ((char) valor == '\n'){
-                       // System.out.println(cadena);
+                       System.out.println(cadena);
                         
-                        if(maven_class_taller_1.ActivoPasivo(cadena) == 1){
-                            aux++;
+//                        if(maven_class_taller_1.ActivoPasivo(cadena) == 1){
+//                            aux++;
+//                        }
+                    if(maven_class_taller_1.ActivoPasivo(cadena) == 1){
+                            System.out.println(": Pasiva");
+                        }
+                        else if(maven_class_taller_1.ActivoPasivo(cadena) == 0){
+                            System.out.println(": Activa");
                         }
                         cadena = "";
                     }
